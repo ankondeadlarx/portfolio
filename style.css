@@ -1,0 +1,188 @@
+/* style.css - base styles for portfolio */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    background-color: #000;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Gradient Blob Background */
+.blob {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 650px;
+    height: 650px;
+    border-radius: 100%;
+    background-image: linear-gradient(120deg, #ff9900 10%, #9500eb 90%);
+    filter: blur(250px);
+    transition: all 450ms ease-out;
+    position: fixed;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    transform: translate(calc(-50% + 15px), -50%);
+    z-index: -1;
+}
+
+/* Reset and base styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styles */
+.navbar {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background: rgba(10, 10, 20, 0.7);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.15);
+}
+
+.floating-navbar {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92vw;
+    max-width: 1400px;
+    background: rgba(30, 20, 50, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(18px) saturate(1.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 2.5rem;
+    z-index: 100;
+    border: 1.5px solid rgba(162, 89, 255, 0.18);
+    transition: background 0.3s, box-shadow 0.3s;
+    height: 92px;
+}
+
+.nav-title {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 2px 8px #a259ff44;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    white-space: nowrap;
+    /* Ensure single line */
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.nav-list li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transition: none;
+    padding: 0.15rem 0.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    background: none;
+    box-shadow: none;
+    font-family: "Cutive", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav-list li a:hover, .nav-list li a:focus {
+    text-shadow: 0 0 8px #a259ff, 0 0 16px #a259ff88;
+    color: #fff;
+}
+
+@media only screen and (max-width: 700px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+    }
+    .floating-navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem;
+        width: 96vw;
+    }
+    .nav-title {
+        font-size: 1.1rem;
+    }
+    .nav-list {
+        gap: 0.7rem;
+    }
+    .nav-list li a {
+        font-size: 0.9rem;
+        padding: 0.12rem 0.4rem;
+    }
+}
+
+/* Custom Cursor Styles */
+.cursor-outer {
+	width: 35px;
+	height: 35px;
+	border: 2px solid #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	z-index: 9999;
+	pointer-events: none;
+	transition: width 0.2s, height 0.2s, border 0.2s;
+}
+
+.cursor-inner {
+	width: 8px;
+	height: 8px;
+	background-color: #9966CC;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	z-index: 9999;
+	pointer-events: none;
+	transition: width 0.2s, height 0.2s, background 0.2s;
+}
+
+.cursor-inner.hover {
+	width: 25px;
+	height: 25px;
+	background: #9966CC;
+	mix-blend-mode: difference;
+}
+
+.cursor-outer.hover {
+	width: 50px;
+	height: 50px;
+}
+
+@media (max-width: 700px) {
+    .cursor-outer, .cursor-inner {
+        display: none;
+    }
+}
