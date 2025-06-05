@@ -84,7 +84,7 @@ body {
     letter-spacing: 2px;
     color: #fff;
     text-shadow: 0 2px 8px #a259ff44;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto Slab', serif;
     white-space: nowrap;
     /* Ensure single line */
 }
@@ -177,8 +177,8 @@ body {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: width 0.3s, height 0.3s;
     transform: translate(-50%, -50%);
+    /* Remove transition for outer cursor - we're handling this with JS */
 }
 
 .cursor-inner {
@@ -189,9 +189,10 @@ body {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    transition: width 0.3s, height 0.3s;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 10px rgba(153, 102, 204, 0.3);
+    /* Keep transition only for hover effects */
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
 }
 
 .cursor-outer.hover {
@@ -242,7 +243,7 @@ main {
 
 section {
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 40px 0;
     padding: 32px 24px;
     background: rgba(20, 20, 30, 0.7);
@@ -254,25 +255,41 @@ section {
 .hero-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     min-height: 320px;
     background: none;
     box-shadow: none;
     padding-top: 40px;
     padding-bottom: 24px;
+    max-width: 1200px;
 }
 
 .hero-content h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
-    text-align: center;
+    text-align: left;
+}
+
+.hero-greeting {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.hero-name {
+    font-family: 'BISON', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    display: block;
 }
 
 .hero-content p {
     font-size: 1.1rem;
     color: #e0e0e0;
-    text-align: center;
+    text-align: left;
 }
 
 .section-title {
@@ -281,6 +298,7 @@ section {
     color: #fff;
     font-family: "Cutive", serif;
     position: relative;
+    text-align: left;
 }
 
 /* About Section Styles */
@@ -486,12 +504,12 @@ section {
 /* Contact Section Styles */
 .contact-section {
     padding: 40px;
-    text-align: center;
+    text-align: left;
 }
 
 .contact-container {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
 }
 
 .contact-info {
@@ -566,7 +584,7 @@ section {
     }
 
     .about-content {
-        text-align: center;
+        text-align: left;
     }
 
     .focus-areas {
@@ -574,11 +592,17 @@ section {
     }
 
     .cta-buttons {
-        justify-content: center;
-    }
-
-    .hero-content h1 {
+        justify-content: flex-start;
+    }    .hero-content h1 {
         font-size: 1.8rem;
+    }
+    
+    .hero-greeting {
+        font-size: 1.5rem;
+    }
+    
+    .hero-name {
+        font-size: 2.4rem;
     }
 
     .hero-content p {

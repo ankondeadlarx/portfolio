@@ -25,20 +25,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const cursorOuter = document.querySelector('.cursor-outer');
     const cursorInner = document.querySelector('.cursor-inner');
     
+    // Store current positions
+    let mouseX = 0;
+    let mouseY = 0;
+    let outerX = 0;
+    let outerY = 0;
+    
     function moveCursor(e) {
-        const mouseY = e.clientY;
-        const mouseX = e.clientX;
-        
-        if (cursorOuter && cursorInner) {
-            requestAnimationFrame(() => {
-                cursorOuter.style.left = `${mouseX}px`;
-                cursorOuter.style.top = `${mouseY}px`;
-                cursorInner.style.left = `${mouseX}px`;
-                cursorInner.style.top = `${mouseY}px`;
-            });
-        }
+        mouseY = e.clientY;
+        mouseX = e.clientX;
     }
-
+    
+    // Animate the cursor with requestAnimationFrame for smooth performance
+    function animateCursor() {
+        if (cursorOuter && cursorInner) {
+            // Update inner cursor immediately (follows mouse exactly)
+            cursorInner.style.left = `${mouseX}px`;
+            cursorInner.style.top = `${mouseY}px`;
+            
+            // Calculate the distance between current outer cursor position and target (mouse position)
+            // Apply easing for smooth following effect
+            const lagFactor = 0.15; // Adjust this value between 0.05-0.2 for different lag effects
+            outerX += (mouseX - outerX) * lagFactor;
+            outerY += (mouseY - outerY) * lagFactor;
+            
+            // Update outer cursor with lag effect
+            cursorOuter.style.left = `${outerX}px`;
+            cursorOuter.style.top = `${outerY}px`;
+        }
+        
+        // Continue animation loop
+        requestAnimationFrame(animateCursor);
+    }
+    
+    // Start animation loop
+    animateCursor();
+    
     // Update cursor position on mousemove
     document.addEventListener('mousemove', moveCursor);
 
